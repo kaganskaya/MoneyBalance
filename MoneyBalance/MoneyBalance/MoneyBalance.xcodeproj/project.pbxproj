@@ -17,9 +17,12 @@
 		67B2DC882270EE8C001AA2E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67B2DC862270EE8C001AA2E6 /* LaunchScreen.storyboard */; };
 		67B2DC922270F8AD001AA2E6 /* spendingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2DC912270F8AD001AA2E6 /* spendingsCell.swift */; };
 		67B2DC9422710169001AA2E6 /* LocalProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2DC9322710169001AA2E6 /* LocalProvider.swift */; };
+		875C0FAB929066EE51AAA8FF /* Pods_MoneyBalance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B6DEFEEF58858A4DBE9A774 /* Pods_MoneyBalance.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B6DEFEEF58858A4DBE9A774 /* Pods_MoneyBalance.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MoneyBalance.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		5BD0AAE2A8EED1FA6CBCCD0F /* Pods-MoneyBalance.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyBalance.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MoneyBalance/Pods-MoneyBalance.debug.xcconfig"; sourceTree = "<group>"; };
 		671C8A4722748A0E00F8314A /* Stack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Stack.swift; sourceTree = "<group>"; };
 		67A25B122275F7710079704B /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		67B2DC772270EE8A001AA2E6 /* MoneyBalance.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MoneyBalance.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -32,6 +35,7 @@
 		67B2DC892270EE8C001AA2E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67B2DC912270F8AD001AA2E6 /* spendingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spendingsCell.swift; sourceTree = "<group>"; };
 		67B2DC9322710169001AA2E6 /* LocalProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalProvider.swift; sourceTree = "<group>"; };
+		A416B3E75430220BB9489762 /* Pods-MoneyBalance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyBalance.release.xcconfig"; path = "Pods/Target Support Files/Pods-MoneyBalance/Pods-MoneyBalance.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -39,17 +43,29 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				875C0FAB929066EE51AAA8FF /* Pods_MoneyBalance.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		613792154C497220B36E536A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				5BD0AAE2A8EED1FA6CBCCD0F /* Pods-MoneyBalance.debug.xcconfig */,
+				A416B3E75430220BB9489762 /* Pods-MoneyBalance.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 		67B2DC6E2270EE8A001AA2E6 = {
 			isa = PBXGroup;
 			children = (
 				67B2DC792270EE8A001AA2E6 /* MoneyBalance */,
 				67B2DC782270EE8A001AA2E6 /* Products */,
+				613792154C497220B36E536A /* Pods */,
+				9C5EE1BFA1F4834D9A112C72 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -79,6 +95,14 @@
 			path = MoneyBalance;
 			sourceTree = "<group>";
 		};
+		9C5EE1BFA1F4834D9A112C72 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				0B6DEFEEF58858A4DBE9A774 /* Pods_MoneyBalance.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -86,9 +110,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 67B2DC8C2270EE8C001AA2E6 /* Build configuration list for PBXNativeTarget "MoneyBalance" */;
 			buildPhases = (
+				1F2FF8E58A53FC604F5001D4 /* [CP] Check Pods Manifest.lock */,
 				67B2DC732270EE8A001AA2E6 /* Sources */,
 				67B2DC742270EE8A001AA2E6 /* Frameworks */,
 				67B2DC752270EE8A001AA2E6 /* Resources */,
+				B9503EFCEB6A8999B8791210 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -144,6 +170,63 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1F2FF8E58A53FC604F5001D4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MoneyBalance-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		B9503EFCEB6A8999B8791210 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-MoneyBalance/Pods-MoneyBalance-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
+				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
+				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftValidators/SwiftValidators.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftValidators.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MoneyBalance/Pods-MoneyBalance-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		67B2DC732270EE8A001AA2E6 /* Sources */ = {
@@ -300,6 +383,7 @@
 		};
 		67B2DC8D2270EE8C001AA2E6 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5BD0AAE2A8EED1FA6CBCCD0F /* Pods-MoneyBalance.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -317,6 +401,7 @@
 		};
 		67B2DC8E2270EE8C001AA2E6 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = A416B3E75430220BB9489762 /* Pods-MoneyBalance.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

@@ -17,8 +17,8 @@ class LocalProvider {
     
     let date = Date()
 
-    func getTotalPerMonth() -> Int{
-        var result:Int = 0
+    func getTotalPerMonth() -> Float{
+        var result:Float = 0
         let fetchRequest =  NSFetchRequest<NSFetchRequestResult>(entityName: "Spendings")
      
         fetchRequest.predicate = NSPredicate(format: "date contains[c] %@", date.monthAsNumber())
@@ -30,7 +30,7 @@ class LocalProvider {
             if fetchRes.count > 0{
                 
                 fetchRes.map { i in
-                    result += Int(i.amount!)!
+                    result += Float(i.amount!)!
                 }
                 
             }else{

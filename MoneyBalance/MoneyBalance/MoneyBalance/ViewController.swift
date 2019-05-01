@@ -8,6 +8,8 @@
 
 import UIKit
 import CoreData
+import SwiftValidators
+
 class ViewController: UIViewController {
 
     @IBOutlet weak var viewUo: UIView!
@@ -51,11 +53,16 @@ class ViewController: UIViewController {
     }
     let lp = LocalProvider()
     @IBAction func adding(_ sender: Any) {
-        
-        lp.saveToBd(date:self.dateString,amount: input.text!)
+        let check = Validator.isInt().apply(input.text) || Validator.isFloat().apply(input.text)
+        if check{
+            lp.saveToBd(date:self.dateString,amount: input.text!)
         self.money = lp.getData()
         self.input.text?.removeAll()
-       self.spendings.reloadData()
+            self.spendings.reloadData()}
+        else{
+            self.input.text?.removeAll()
+
+        }
     }
     
 }
@@ -71,20 +78,70 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
         return true
     }
     
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
-        if (editingStyle == .delete) {
-
-            lp.deleteData(index: money[indexPath.row])
-
-            money.remove(at: indexPath.row)
-
-            tableView.reloadData()
+    func tableView(_ tableView: UITableView, editActionsForRowAt indexPath: IndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: .default, title: "Delete") { (action, indePpath) in
+            self.deleteAction(indexPath: indePpath)
         }
+        
+        let updateAction  = UITableViewRowAction(style: .default, title: "Update") { (action, indPath) in
+            self.updateAction(indexPath:indPath)
+        }
+        updateAction.backgroundColor = .blue
+        return [deleteAction,updateAction]
     }
-    
-    
+    func updateAction(indexPath: IndexPath){
+        
+        let alert = UIAlertController(title: "Update", message: "Update summa", preferredStyle: .alert)
+        
+        let saveAction = UIAlertAction(title: "Save", style:.default) { action in
+            
+        guard let textField = alert.textFields?.first  else {
+            return
+
+        }
+            
+            if let textToEdit = textField.text{
+                if textToEdit.count == 0 {
+                    return
+                }
+                
+                self.lp.saveToBd(date: self.money[indexPath.row-1].date!, amount: textToEdit)
+                self.lp.deleteData(index: self.money[indexPath.row-1])
+                self.money = self.lp.getData()
+                self.spendings.reloadData()
+            }else{
+                return
+                
+            }
+        }
+         let cancel =  UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        alert.addTextField()
+        guard let textField = alert.textFields?.first  else {
+            return
+            
+        }
+        textField.placeholder  = "New value"
+        alert.addAction(saveAction)
+        alert.addAction(cancel)
+        present(alert,animated: true)
+        
+    }
+    func deleteAction(indexPath: IndexPath){
+        let alert = UIAlertController(title: "Delete", message: "Are you sure u want to delete?", preferredStyle: .alert)
+        let deleteAction = UIAlertAction(title: "Yes", style:.default) { action in
+            
+            self.lp.deleteData(index: self.money[indexPath.row-1])
+            self.money.remove(at: indexPath.row-1)
+            self.spendings.reloadData()
+
+        }
+        let cancel =  UIAlertAction(title: "No", style: .default, handler: nil)
+        alert.addAction(deleteAction)
+        alert.addAction(cancel)
+        present(alert,animated: true)
+        
+    }
+
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "spendingCell", for: indexPath) as! spendingsCell
         let index = indexPath.row
@@ -92,7 +149,7 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
             var frameRect =  cell.dateL.frame
             frameRect.size.width = cell.frame.width/2
             cell.dateL.frame = frameRect
-            cell.dateL.font = cell.dateL.font.withSize(35)
+            cell.dateL.font = cell.dateL.font.withSize(30)
             cell.dateL.text = date.monthAsString()
             
             cell.moneyL.text = lp.getTotalPerMonth().description
