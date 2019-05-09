@@ -31,7 +31,6 @@ class ViewController: UIViewController {
         self.dropDown.optionArray = ["Food","Clothes","Fun","Kids","Other"]
         dropDown.didSelect{(selectedText , index ,id) in
             self.category = selectedText
-            print(self.category)
         }
         
         dateFormatter.dateFormat = "dd/MM/yyyy"
