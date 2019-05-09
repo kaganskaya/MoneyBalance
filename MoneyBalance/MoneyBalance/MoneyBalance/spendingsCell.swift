@@ -12,7 +12,9 @@ class spendingsCell: UITableViewCell {
 
     @IBOutlet weak var moneyL: UILabel!
     @IBOutlet weak var dateL: UILabel!
-//    override func awakeFromNib() {
+
+    @IBOutlet weak var categoryL: UILabel!
+    //    override func awakeFromNib() {
 //        super.awakeFromNib()
 //        //moneyL.font = .systemFont(ofSize: 18)
 //    }

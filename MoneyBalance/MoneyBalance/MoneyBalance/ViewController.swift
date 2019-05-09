@@ -9,20 +9,30 @@
 import UIKit
 import CoreData
 import SwiftValidators
+import iOSDropDown
 
 class ViewController: UIViewController {
 
+    @IBOutlet weak var dropDown: DropDown!
     @IBOutlet weak var viewUo: UIView!
     @IBOutlet weak var spendings: UITableView!
     @IBOutlet weak var addB: UIButton!
     @IBOutlet weak var input: UITextField!
+
     let date = Date()
     var money : [Spendings] = []
     var dateC:String = ""
     var dateFormatter = DateFormatter()
     var dateString:String = " "
+    var category:String = ""
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.dropDown.optionArray = ["Food","Clothes","Fun","Kids","Other"]
+        dropDown.didSelect{(selectedText , index ,id) in
+            self.category = selectedText
+            print(self.category)
+        }
         
         dateFormatter.dateFormat = "dd/MM/yyyy"
         dateString = dateFormatter.string(from: date as Date)
@@ -53,9 +63,10 @@ class ViewController: UIViewController {
     }
     let lp = LocalProvider()
     @IBAction func adding(_ sender: Any) {
+        
         let check = Validator.isInt().apply(input.text) || Validator.isFloat().apply(input.text)
         if check{
-            lp.saveToBd(date:self.dateString,amount: input.text!)
+            lp.saveToBd(date:self.dateString,amount: input.text!, category: self.category )
         self.money = lp.getData()
         self.input.text?.removeAll()
             self.spendings.reloadData()}
@@ -105,7 +116,7 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
                     return
                 }
                 
-                self.lp.saveToBd(date: self.money[indexPath.row-1].date!, amount: textToEdit)
+                self.lp.saveToBd(date: self.money[indexPath.row-1].date!, amount: textToEdit,category: self.money[indexPath.row-1].category!)
                 self.lp.deleteData(index: self.money[indexPath.row-1])
                 self.money = self.lp.getData()
                 self.spendings.reloadData()
@@ -130,8 +141,8 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
         let alert = UIAlertController(title: "Delete", message: "Are you sure u want to delete?", preferredStyle: .alert)
         let deleteAction = UIAlertAction(title: "Yes", style:.default) { action in
             
-            self.lp.deleteData(index: self.money[indexPath.row-1])
-            self.money.remove(at: indexPath.row-1)
+            self.lp.deleteData(index: self.money[self.money.count-indexPath.row])
+            self.money.remove(at: self.money.count-indexPath.row)
             self.spendings.reloadData()
 
         }
@@ -151,11 +162,12 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
             cell.dateL.frame = frameRect
             cell.dateL.font = cell.dateL.font.withSize(30)
             cell.dateL.text = date.monthAsString()
-            
+            cell.categoryL.text = " "
             cell.moneyL.text = lp.getTotalPerMonth().description
         }else{
-        cell.dateL.text = money[index-1].date
-        cell.moneyL.text = money[index-1].amount!
+        cell.dateL.text = money[money.count-indexPath.row].date
+        cell.moneyL.text = money[money.count-indexPath.row].amount!
+        cell.categoryL.text = money[money.count-indexPath.row].category!
         }
         return cell
     }

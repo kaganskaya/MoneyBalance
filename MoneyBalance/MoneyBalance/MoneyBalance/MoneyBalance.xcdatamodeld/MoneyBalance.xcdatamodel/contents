@@ -2,9 +2,10 @@
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18C54" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Spendings" representedClassName="Spendings" syncable="YES" codeGenerationType="class">
         <attribute name="amount" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="category" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="date" optional="YES" attributeType="String" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Spendings" positionX="-63" positionY="-18" width="128" height="75"/>
+        <element name="Spendings" positionX="-63" positionY="-18" width="128" height="90"/>
     </elements>
 </model>

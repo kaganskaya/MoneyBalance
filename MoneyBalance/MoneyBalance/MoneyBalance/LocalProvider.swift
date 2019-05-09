@@ -47,7 +47,7 @@ class LocalProvider {
     
     func deleteData(index:Spendings){
         managedContext.delete(index as NSManagedObject )
-        
+    
         do {
             try managedContext.save()
         } catch let error as NSError {
@@ -71,11 +71,13 @@ class LocalProvider {
         return business
     }
     
-    func saveToBd( date:String, amount:String) -> Bool{
+    func saveToBd( date:String, amount:String, category:String) -> Bool{
         
         let entity =  NSEntityDescription.entity(forEntityName: "Spendings",in: managedContext)!
         
         let busines = NSManagedObject(entity: entity,insertInto: managedContext) as! Spendings
+        
+        busines.category = category
         
         busines.date = date
         
