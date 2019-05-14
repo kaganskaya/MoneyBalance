@@ -12,17 +12,7 @@ class spendingsCell: UITableViewCell {
 
     @IBOutlet weak var moneyL: UILabel!
     @IBOutlet weak var dateL: UILabel!
-
     @IBOutlet weak var categoryL: UILabel!
-    //    override func awakeFromNib() {
-//        super.awakeFromNib()
-//        //moneyL.font = .systemFont(ofSize: 18)
-//    }
-//
-//    override func setSelected(_ selected: Bool, animated: Bool) {
-//        super.setSelected(selected, animated: animated)
-//
-//        // Configure the view for the selected state
-//    }
+    
 
 }

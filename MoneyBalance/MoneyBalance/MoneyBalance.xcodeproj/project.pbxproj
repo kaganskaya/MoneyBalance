@@ -17,6 +17,7 @@
 		67B2DC882270EE8C001AA2E6 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 67B2DC862270EE8C001AA2E6 /* LaunchScreen.storyboard */; };
 		67B2DC922270F8AD001AA2E6 /* spendingsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2DC912270F8AD001AA2E6 /* spendingsCell.swift */; };
 		67B2DC9422710169001AA2E6 /* LocalProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67B2DC9322710169001AA2E6 /* LocalProvider.swift */; };
+		67E007FB22894C0900074086 /* ChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 67E007FA22894C0900074086 /* ChartViewController.swift */; };
 		875C0FAB929066EE51AAA8FF /* Pods_MoneyBalance.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0B6DEFEEF58858A4DBE9A774 /* Pods_MoneyBalance.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +36,7 @@
 		67B2DC892270EE8C001AA2E6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		67B2DC912270F8AD001AA2E6 /* spendingsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = spendingsCell.swift; sourceTree = "<group>"; };
 		67B2DC9322710169001AA2E6 /* LocalProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalProvider.swift; sourceTree = "<group>"; };
+		67E007FA22894C0900074086 /* ChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartViewController.swift; sourceTree = "<group>"; };
 		A416B3E75430220BB9489762 /* Pods-MoneyBalance.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MoneyBalance.release.xcconfig"; path = "Pods/Target Support Files/Pods-MoneyBalance/Pods-MoneyBalance.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -91,6 +93,7 @@
 				67B2DC912270F8AD001AA2E6 /* spendingsCell.swift */,
 				67B2DC9322710169001AA2E6 /* LocalProvider.swift */,
 				671C8A4722748A0E00F8314A /* Stack.swift */,
+				67E007FA22894C0900074086 /* ChartViewController.swift */,
 			);
 			path = MoneyBalance;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 				"${BUILT_PRODUCTS_DIR}/RxAtomic/RxAtomic.framework",
 				"${BUILT_PRODUCTS_DIR}/RxCocoa/RxCocoa.framework",
 				"${BUILT_PRODUCTS_DIR}/RxSwift/RxSwift.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftChart/SwiftChart.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftValidators/SwiftValidators.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyJSON/SwiftyJSON.framework",
 				"${BUILT_PRODUCTS_DIR}/iOSDropDown/iOSDropDown.framework",
@@ -219,6 +223,7 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxAtomic.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxCocoa.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RxSwift.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftChart.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftValidators.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyJSON.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDropDown.framework",
@@ -240,6 +245,7 @@
 				67B2DC9422710169001AA2E6 /* LocalProvider.swift in Sources */,
 				67B2DC7B2270EE8A001AA2E6 /* AppDelegate.swift in Sources */,
 				671C8A4822748A0E00F8314A /* Stack.swift in Sources */,
+				67E007FB22894C0900074086 /* ChartViewController.swift in Sources */,
 				67B2DC832270EE8A001AA2E6 /* MoneyBalance.xcdatamodeld in Sources */,
 				67A25B132275F7710079704B /* Extensions.swift in Sources */,
 			);

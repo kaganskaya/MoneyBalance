@@ -9,15 +9,23 @@
 import Foundation
 
 extension Date {
+    
     func monthAsString() -> String {
+        
         let df = DateFormatter()
-        df.setLocalizedDateFormatFromTemplate("MMMM")
+            df.setLocalizedDateFormatFromTemplate("MMMM")
+        
         return df.string(from: self)
     }
-func monthAsNumber() -> String {
-    let df = DateFormatter()
-    df.setLocalizedDateFormatFromTemplate("MM")
-    return df.string(from: self)
-}}
+    
+    func monthAsNumber() -> String {
+        
+        let df = DateFormatter()
+            df.setLocalizedDateFormatFromTemplate("MM")
+    
+        return df.string(from: self)
+    }
+    
+}
 
 

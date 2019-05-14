@@ -25,58 +25,76 @@ class ViewController: UIViewController {
     var dateFormatter = DateFormatter()
     var dateString:String = " "
     var category:String = ""
-    
+
     override func viewDidLoad() {
+        
         super.viewDidLoad()
+        
+        lp.getTotalPerDay()
+        
         self.dropDown.optionArray = ["Food","Clothes","Fun","Kids","Other"]
-        dropDown.didSelect{(selectedText , index ,id) in
-            self.category = selectedText
+            dropDown.didSelect{(selectedText , index ,id) in
+                self.category = selectedText
         }
         
         dateFormatter.dateFormat = "dd/MM/yyyy"
         dateString = dateFormatter.string(from: date as Date)
         
-        spendings.layer.cornerRadius = 20
-        viewUo.layer.cornerRadius = 20
-        addB.layer.cornerRadius = 10
-        
-        input.layer.cornerRadius = 10
-        var frameRect = input.frame
-        frameRect.size.height = 50
-        var frameRect1 = addB.frame
-        frameRect1.size.height = 45
-        frameRect1.size.width = 45
-
-        addB.frame = frameRect1
-
-        input.frame = frameRect
-        input.layer.borderColor = UIColor.white.cgColor
-        input.layer.borderWidth  = 2
+        setupViewElements()
       
         self.money = lp.getData()
         
         self.spendings.reloadData()
-
         self.spendings.delegate = self
         self.spendings.dataSource = self
     }
-    let lp = LocalProvider()
+    
+    func setupViewElements(){
+        
+        spendings.layer.cornerRadius = 20
+        
+        viewUo.layer.cornerRadius = 20
+        
+        addB.layer.cornerRadius = 10
+        
+        input.layer.cornerRadius = 10
+        
+        var frameRect = input.frame
+            frameRect.size.height = 50
+        
+        var frameRect1 = addB.frame
+            frameRect1.size.height = 45
+            frameRect1.size.width = 45
+        
+        addB.frame = frameRect1
+        
+        input.frame = frameRect
+        input.layer.borderColor = UIColor.white.cgColor
+        input.layer.borderWidth  = 2
+    
+    }
+    
     @IBAction func adding(_ sender: Any) {
         
         let check = Validator.isInt().apply(input.text) || Validator.isFloat().apply(input.text)
         if check{
-            lp.saveToBd(date:self.dateString,amount: input.text!, category: self.category )
-        self.money = lp.getData()
-        self.input.text?.removeAll()
-            self.spendings.reloadData()}
-        else{
+            
+            lp.saveToBd(date:self.dateString,amount: input.text!, category: self.category)
+            
+            self.money = lp.getData()
+            
             self.input.text?.removeAll()
-
+            
+            self.spendings.reloadData()
+            
+        }else{
+            self.input.text?.removeAll()
         }
     }
     
 }
 extension ViewController: UITableViewDelegate,UITableViewDataSource{
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return money.count+1
     }
@@ -96,9 +114,11 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
         let updateAction  = UITableViewRowAction(style: .default, title: "Update") { (action, indPath) in
             self.updateAction(indexPath:indPath)
         }
-        updateAction.backgroundColor = .blue
+            updateAction.backgroundColor = .blue
+        
         return [deleteAction,updateAction]
     }
+    
     func updateAction(indexPath: IndexPath){
         
         let alert = UIAlertController(title: "Update", message: "Update summa", preferredStyle: .alert)
@@ -107,7 +127,6 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
             
         guard let textField = alert.textFields?.first  else {
             return
-
         }
             
             if let textToEdit = textField.text{
@@ -115,36 +134,45 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
                     return
                 }
                 
-                self.lp.saveToBd(date: self.money[indexPath.row-1].date!, amount: textToEdit,category: self.money[indexPath.row-1].category!)
-                self.lp.deleteData(index: self.money[indexPath.row-1])
-                self.money = self.lp.getData()
+                lp.saveToBd(date: self.money[indexPath.row-1].date!, amount: textToEdit,category: self.money[indexPath.row-1].category!)
+                
+                lp.deleteData(index: self.money[indexPath.row-1])
+                
+                self.money = lp.getData()
+                
                 self.spendings.reloadData()
+                
             }else{
                 return
-                
             }
         }
-         let cancel =  UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        
+        let cancel =  UIAlertAction(title: "Cancel", style: .default, handler: nil)
+        
         alert.addTextField()
+        
         guard let textField = alert.textFields?.first  else {
             return
-            
         }
+        
         textField.placeholder  = "New value"
+        
         alert.addAction(saveAction)
         alert.addAction(cancel)
         present(alert,animated: true)
         
     }
+    
     func deleteAction(indexPath: IndexPath){
         let alert = UIAlertController(title: "Delete", message: "Are you sure u want to delete?", preferredStyle: .alert)
         let deleteAction = UIAlertAction(title: "Yes", style:.default) { action in
             
-            self.lp.deleteData(index: self.money[self.money.count-indexPath.row])
+            lp.deleteData(index: self.money[self.money.count-indexPath.row])
             self.money.remove(at: self.money.count-indexPath.row)
             self.spendings.reloadData()
 
         }
+        
         let cancel =  UIAlertAction(title: "No", style: .default, handler: nil)
         alert.addAction(deleteAction)
         alert.addAction(cancel)
@@ -156,6 +184,7 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
         let cell = tableView.dequeueReusableCell(withIdentifier: "spendingCell", for: indexPath) as! spendingsCell
         let index = indexPath.row
         if(index == 0){
+            
             var frameRect =  cell.dateL.frame
             frameRect.size.width = cell.frame.width/2
             cell.dateL.frame = frameRect
@@ -163,10 +192,13 @@ extension ViewController: UITableViewDelegate,UITableViewDataSource{
             cell.dateL.text = date.monthAsString()
             cell.categoryL.text = " "
             cell.moneyL.text = lp.getTotalPerMonth().description
+            
         }else{
+            
         cell.dateL.text = money[money.count-indexPath.row].date
         cell.moneyL.text = money[money.count-indexPath.row].amount!
         cell.categoryL.text = money[money.count-indexPath.row].category!
+            
         }
         return cell
     }
